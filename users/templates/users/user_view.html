@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <div class="row">
+      <div class="col-4"></div>
+
+
+      <div class="col-4">
+     <div class="card" style="width: 18rem;">
+  <img src="{{user.profile_pic.url}}" class="card-img-top" alt="user image">
+  <div class="card-body">
+    <h5 class="card-title">Name:-{{user.user}}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">DOB:-{{user.birth_date}}</li>
+    <li class="list-group-item">Bio:-{{user.bio}}</li>
+  </ul>
+</div>
+      </div>
+
+
+      <div class="col-4"></div>
+  </div>
+ </div>
+</body>
+</html>
