@@ -20,7 +20,7 @@ class UserRegistration(TemplateView):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("home")
+            return redirect("userhome")
         else:
             self.context["form"] = form
             return render(request, self.template_name, self.context)
@@ -43,13 +43,10 @@ class UserLogin(TemplateView):
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request,user)
-            return redirect("home")
+            return redirect("userhome")
         else:
             self.context["form"] = form
             return render(request, self.template_name, self.context)
-
-class Home(TemplateView):
-    template_name = "users/home.html"
 
 class SignOut(TemplateView):
     template_name = "users/user_login.html"
@@ -79,11 +76,15 @@ class UserHome(TemplateView):
     template_name = "users/user_home.html"
     context={}
 
-    def get_query_set(self):
+    def get_query_set(self,user):
+        return self.model.objects.get(user=user)
+
+    def get_object_set(self):
         return self.model.objects.all()
 
     def get(self, request, *args, **kwargs):
-        self.context["users"]=self.get_query_set()
+        user=request.user
+        self.context["users"]=self.get_query_set(user)
         return render(request,self.template_name,self.context)
 
 class UserEdit(TemplateView):
@@ -106,8 +107,6 @@ class UserEdit(TemplateView):
         if form.is_valid():
             form.save()
             return redirect("userhome")
-
-
 
 class UserDelete(TemplateView):
     model=ProfileModel
@@ -132,15 +131,3 @@ class UserView(TemplateView):
         user=self.get_query_set(kwargs.get("pk"))
         self.context["user"]=user
         return render(request,self.template_name,self.context)
-
-    # def post(self, request, *args, **kwargs):
-    #     user = self.get_query_set(kwargs.get("pk"))
-    #     form = ProfileCreateForm(instance=user,data=request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect("userhome")
-
-# user=Profile.objects.get(user=request.user)
-#     context={}
-#     context["user"]=user
-#     return render(request,"users/viewprofile.html",context)

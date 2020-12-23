@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
-{%for user in users%}
-Name:{{user.user}} ,Bio:{{user.bio}} ,{{user.birth_date}},{{user.profile_pic}}
-<a href="{%url 'delete' user.id%}">Delete</a>
-<a href="{%url 'edit' user.id%}">Edit</a>
-<a href="{%url 'view' user.id%}">View</a>
-<hr>
-{% endfor %}
+<h1>welcome User{{request.user}}</h1>
+<h3>{{request.user}}<a href="{%url 'logout'%}">logout</a></h3>
+<a href="{%url 'view' users.id%}">ViewMyProfile</a>
+<a href="{%url 'edit' users.id%}">EditProfile</a>
+<a href="{%url 'delete' users.id%}">DeleteProfile</a>
+<a href="{%url 'createrecipe'%}">CreateRecipe</a>
+<a href="{%url 'listrecipe'%}">MyRecipes</a>
+<a href="{%url 'allrecipe'%}">AllRecipes</a>
+
+
+
 </body>
 </html>

@@ -15,16 +15,14 @@ Including another URLconf
 """
 
 from django.urls import path
-from users.views import UserHome,UserDelete,UserEdit,UserRegistration,UserLogin,SignOut,\
-    CreateProfile,UserView
+from .views import CreateRecipe,ListRecipes,RecipeEdit,RecipeView,RecipeDelete,AllRecipes
 
 urlpatterns = [
-path('userregister',UserRegistration.as_view(),name="userregister"),
-path('userlogin',UserLogin.as_view(),name="userlogin"),
-path('logout',SignOut.as_view(),name="logout"),
-path('userhome',UserHome.as_view(),name="userhome"),
-path('profile',CreateProfile.as_view(),name="profile"),
-path('delete/<int:pk>',UserDelete.as_view(),name="delete"),
-    path('edit/<int:pk>', UserEdit.as_view(), name="edit"),
-    path('view/<int:pk>', UserView.as_view(), name="view"),
+
+path('createrecipe',CreateRecipe.as_view(),name="createrecipe"),
+path('listrecipe',ListRecipes.as_view(),name="listrecipe"),
+path('recipeedit/<int:pk>',RecipeEdit.as_view(),name="recipeedit"),
+path('recipeview/<int:pk>',RecipeView.as_view(),name="recipeview"),
+path('recipedelete/<int:pk>',RecipeDelete.as_view(),name="recipedelete"),
+path('allrecipe',AllRecipes.as_view(),name="allrecipe"),
 ]
