@@ -95,3 +95,4 @@ class AllRecipes(TemplateView):
 
 
 
+

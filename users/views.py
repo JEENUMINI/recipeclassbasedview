@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from users.forms import ProfileForm,UserRegistrationForm,LoginForm,ProfileCreateForm
-from users.models import Profile,ProfileModel
+from users.forms import UserRegistrationForm,LoginForm,ProfileCreateForm
+from users.models import ProfileModel
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.views.generic import CreateView,ListView,UpdateView,DetailView,DeleteView,TemplateView
@@ -43,13 +43,13 @@ class UserLogin(TemplateView):
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request,user)
-            return redirect("userhome")
+                return redirect("userhome")
         else:
             self.context["form"] = form
             return render(request, self.template_name, self.context)
 
 class SignOut(TemplateView):
-    template_name = "users/user_login.html"
+    template_name = "users/user_home.html"
 
     def get(self, request, *args, **kwargs):
         logout(request)
